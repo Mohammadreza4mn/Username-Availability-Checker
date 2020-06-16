@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Normal from './components/Normal';
 import Professional from './components/Professional';
 
 const App = (props) => {
 
-    const [method, setMethod] = useState('normal');
-
     return (
         <div className="container vh-100 d-flex align-items-center justify-content-center" id="hava">
             <div className="form-group row w-100 justify-content-center">
-                <div className="btn-group-vertical order-sm-1 m-5 m-md-0">
-                    <button className="btn btn-dark border" onClick={setMethod.bind(this, 'normal')}>روش معمولی</button>
-                    <button className="btn btn-dark border" onClick={setMethod.bind(this, 'professional')}>روش حرفه‌ای</button>
-                </div>
-                {method == 'normal' ? <Normal /> : <Professional />}
+                <Router>
+                    <div className="btn-group-vertical order-sm-1 m-5 m-md-0">
+                        <Link to="/">
+                            <button className="btn btn-dark border">روش معمولی</button>
+                        </Link>
+                        <Link to="/professional">
+                            <button className="btn btn-dark border">روش حرفه‌ای</button>
+                        </Link>
+                    </div>
+                    <Route exact path="/" component={Normal} />
+                    <Route exact path="/professional" component={Professional} />
+                </Router>
             </div>
         </div>
     )
