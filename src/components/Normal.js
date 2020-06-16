@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import GenerateContext from '../context/Generate-context';
 import Result from './Result';
+import CalendarPicker from './CalendarPicker';
 
 const Normal = (props) => {
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
     const [userName, setUserName] = useState([]);
     const [display, setDisplay] = useState('col-md-5');
 
+    const redSetInfoUser = (state, action) => {
+        switch (action.status) {
+            case "setFirstName":
+                return { ...state, firstName: action.value }
+            case "setLastName":
+                return { ...state, lastName: action.value }
+            default:
+                return state
+        }
+    }
+    const [infoUser, setInfoUser] = useReducer(redSetInfoUser, {})
+
     const inputFirstName = (event) => {
-        setFirstName(event.target.value)
+        setInfoUser({ status: "setFirstName", value: event.target.value })
     }
     const inputLastName = (event) => {
-        setLastName(event.target.value)
+        setInfoUser({ status: "setLastName", value: event.target.value })
     }
 
     const generate = () => {
-        if (firstName || lastName) {
+        if (infoUser.firstName || infoUser.lastName) {
             const arrayUserName = [];
-            arrayUserName.push(`${firstName}.${lastName.charAt(0) + lastName.charAt(lastName.length - 1)}`)
+            arrayUserName.push(`${infoUser.firstName}.${infoUser.lastName.charAt(0) + infoUser.lastName.charAt(infoUser.lastName.length - 1)}`)
             setUserName(arrayUserName)
             setDisplay('d-none')
-            setFirstName('')
-            setLastName('')
         }
     }
 
@@ -34,16 +43,17 @@ const Normal = (props) => {
     return (
         <GenerateContext.Provider value={{
             resultUserName: userName,
-            display: hide_show
+            actionDisplay: hide_show
         }}>
             <div className={display}>
                 <input type="text" className="form-control text-center mb-2" placeholder="نام"
-                    onChange={inputFirstName} value={firstName} />
+                    onChange={inputFirstName}  pattern="[A-Za-z]+" title="Three letter country code" autoFocus />
                 <input type="text" className="form-control text-center my-2" placeholder="نام خانوادگی"
-                    onChange={inputLastName} value={lastName} />
+                    onChange={inputLastName} />
                 <input type="text" className="form-control text-center my-2" placeholder="تاریخ تولد" />
                 <button className="btn btn-dark border btn-block" onClick={generate} >ساختن نام کاربری</button>
             </div>
+            <CalendarPicker />
             {display == 'd-none' ? <Result /> : null}
         </GenerateContext.Provider>
     )
