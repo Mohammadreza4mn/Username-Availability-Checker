@@ -1,5 +1,6 @@
 {
-  "name": "jellyfish",
+  "name": "username_availability_checker",
+  "homepage": "https://mohammadreza4mn.github.io/Username-Availability-Checker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
