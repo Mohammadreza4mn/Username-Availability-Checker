@@ -1,10 +1,14 @@
-# About jellyfish :fish: <br/>
-:stopwatch: Every 15 seconds the background image is changed using [api unsplash](https://unsplash.com/developers) :framed_picture: <br />
+# Username Availability Checker :id: <br/>
+:eyeglasses: Easily check different usernames before registering on websites <br />
+:dizzy: Enter your details using both normal and professional methods to be offered various usernames quickly <br />
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can run:<br />
+
+:arrow_down: Before running:<br />
+1. Edit `package.json` line 3 ("homepage": "https://mohammadreza4mn.github.io/Username-Availability-Checker"), I suggest deleting this line if you want to run the project on localhost.
 
 ### `npm start`
 
