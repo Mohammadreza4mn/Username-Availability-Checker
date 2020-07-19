@@ -1,7 +1,6 @@
 import React, { useState, useReducer } from 'react';
 import GenerateContext from '../context/Generate-context';
 import Result from './Result';
-import CalendarPicker from './CalendarPicker';
 
 const Normal = (props) => {
 
@@ -28,9 +27,16 @@ const Normal = (props) => {
     }
 
     const generate = () => {
-        if (infoUser.firstName || infoUser.lastName) {
+        if (infoUser.firstName && infoUser.lastName) {
             const arrayUserName = [];
-            arrayUserName.push(`${infoUser.firstName}.${infoUser.lastName.charAt(0) + infoUser.lastName.charAt(infoUser.lastName.length - 1)}`)
+            arrayUserName.push(`${infoUser.firstName.charAt(0) +
+                infoUser.firstName.charAt(infoUser.firstName.length - 1)}_${infoUser.lastName.charAt(0) +
+                infoUser.lastName.charAt(infoUser.lastName.length - 1)}`)
+            arrayUserName.push(`${infoUser.firstName}_${infoUser.lastName.charAt(0) +
+                infoUser.lastName.charAt(infoUser.lastName.length - 1)}`)
+            arrayUserName.push(`${infoUser.firstName.charAt(0) +
+                infoUser.firstName.charAt(infoUser.firstName.length - 1)}_${infoUser.lastName}`)
+            arrayUserName.push(`${infoUser.firstName}_${infoUser.lastName}`)
             setUserName(arrayUserName)
             setDisplay('d-none')
         }
@@ -47,13 +53,11 @@ const Normal = (props) => {
         }}>
             <div className={display}>
                 <input type="text" className="form-control text-center mb-2" placeholder="نام"
-                    onChange={inputFirstName}  pattern="[A-Za-z]+" title="Three letter country code" autoFocus />
+                    onChange={inputFirstName} required autoFocus />
                 <input type="text" className="form-control text-center my-2" placeholder="نام خانوادگی"
-                    onChange={inputLastName} />
-                <input type="text" className="form-control text-center my-2" placeholder="تاریخ تولد" />
+                    onChange={inputLastName} required />
                 <button className="btn btn-dark border btn-block" onClick={generate} >ساختن نام کاربری</button>
             </div>
-            <CalendarPicker />
             {display == 'd-none' ? <Result /> : null}
         </GenerateContext.Provider>
     )
