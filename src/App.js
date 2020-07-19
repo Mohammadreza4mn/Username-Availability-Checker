@@ -6,7 +6,7 @@ import Professional from './components/Professional';
 const App = (props) => {
 
     return (
-        <div className="container vh-100 d-flex align-items-center justify-content-center" id="hava">
+        <div className="container vh-100 d-flex align-items-center justify-content-center">
             <div className="form-group row w-100 justify-content-center">
                 <Router>
                     <div className="btn-group-vertical order-sm-1 m-5 m-md-0">
