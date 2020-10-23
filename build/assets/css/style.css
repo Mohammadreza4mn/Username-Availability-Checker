@@ -1,0 +1,9 @@
+    @font-face {
+        font-family: iranyekan;
+        src: url(iranyekanwebregular.woff);
+    }
+    body {
+        font-family: iranyekan;
+        transition: 0.5s;
+        background-color: #343d4b;
+    }
