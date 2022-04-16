@@ -2,12 +2,12 @@ import React, { useState, useReducer } from 'react';
 import GenerateContext from '../context/Generate-context';
 import Result from './Result';
 import CalendarPicker from './CalendarPicker';
-import { dateBirth } from './CalendarPicker';
 
 const Professional = (props) => {
 
     const [userName, setUserName] = useState([]);
     const [display, setDisplay] = useState('col-md-5');
+    const [dateBirth, setDateBirth] = useState("");
 
     const redSetInfoUser = (state, action) => {
         switch (action.status) {
@@ -57,7 +57,7 @@ const Professional = (props) => {
                     onChange={inputFirstName} required autoFocus />
                 <input type="text" className="form-control text-center my-2" placeholder="نام خانوادگی"
                     onChange={inputLastName} required />
-                <CalendarPicker />
+                <CalendarPicker setDateBirth={setDateBirth} />
                 <button className="btn btn-dark border btn-block" onClick={generate} >ساختن نام کاربری</button>
             </div>
             {display == 'd-none' ? <Result /> : null}

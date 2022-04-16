@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
-export let dateBirth;
 
-const CalendarPicker = () => {
+const CalendarPicker = ({ setDateBirth }) => {
 
   const [selectedDay, setSelectedDay] = useState();
-
-  dateBirth = selectedDay;
 
   const renderCustomInput = ({ ref }) => (
     <input type="text" className="form-control text-center my-2"
@@ -18,7 +15,7 @@ const CalendarPicker = () => {
   return (
     <DatePicker
       value={selectedDay}
-      onChange={setSelectedDay}
+      onChange={(date) => { setSelectedDay(date); setDateBirth(date) }}
       inputPlaceholder="Select a day"
       shouldHighlightWeekends
       locale="fa"
