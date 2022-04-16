@@ -2,37 +2,32 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Availability = (props) => {
+    const sites = ['gitlab', 'github', 'instagram', 'pinterest', 'twitter']
+    let usable = [];
 
-    const [response, setResponse] = useState([15]);
-    const usable = [];
+    const [response, setResponse] = useState(Array.from({ length: sites.length }, () => <span className="spinner-border" />));
 
     useEffect(
         () => {
-            const sites = ['gitlab', 'github', 'instagram', 'pinterest', 'twitter']
-            sites.map((item, index) => {
-                axios.get(`https://username-availability.herokuapp.com/check/${item}/${props.resultUserName}`)
-                    .then(res => {
-                        if (res.data.possible === true) {
-                            usable.push(item)
-                        } else {
-                            usable.push("")
-                        }
+            axios.all(sites.map((item) => axios.get(`https://username-availability.herokuapp.com/check/${item}/${props.resultUserName}`)))
+                .then(
+                    axios.spread((...res) => {
+                        res.forEach(({ data }, index) => {
+                            if (data.possible === true) {
+                                usable[index] = sites[index]
+                            } else {
+                                usable[index] = ""
+                            }
+
+                        })
                     })
-                    .catch(error => {
-                        console.log(error)
-                    })
-            }
-            )
-
-            const timer = setInterval(() => {
-                setResponse((last) => [last - 1])
-            }, 1000)
-
-            setTimeout(() => {
-                clearInterval(timer)
-                setResponse(usable)
-            }, 15000)
-
+                )
+                .catch(error => {
+                    usable = Array.from({ length: sites.length }, () => error.message)
+                })
+                .finally(() =>
+                    setResponse(usable)
+                )
         }, []
     )
 
