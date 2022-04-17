@@ -16,7 +16,7 @@ const Availability = (props) => {
                             if (data.possible === true) {
                                 usable[index] = sites[index]
                             } else {
-                                usable[index] = ""
+                                usable[index] = "--"
                             }
 
                         })

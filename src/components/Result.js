@@ -10,7 +10,7 @@ const Result = (props) => {
         <div className="col-md-10">
             <table className="table table-dark text-center table-hover rounded">
                 <caption>
-                    <a className="badge badge-light" href="http://github.com/mohammadreza4mn">
+                    <a className="badge badge-light" target="_blank"  href="http://github.com/mohammadreza4mn">
                         <img style={{ width: "50px" }} src={`${process.env.PUBLIC_URL}/assets/img/m.m.jpg`} />
                     </a>
                 </caption>
