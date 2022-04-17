@@ -2,6 +2,7 @@
 :eyeglasses: Easily check different usernames before registering on websites <br />
 :dizzy: Enter your details using both normal and professional methods to be offered various usernames quickly <br />
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+:man_facepalming: Due to the lack of access to API, I suggest using vpn to run the program correctly and completely
 
 ## Available Scripts
 
