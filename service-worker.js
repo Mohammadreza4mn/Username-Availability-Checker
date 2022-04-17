@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Username-Availability-Checker/precache-manifest.f4eb65d806915e49d68c8438a20b78d1.js"
+  "/Username-Availability-Checker/precache-manifest.84dce4bb2c7a8f2a46c215dea83addb4.js"
 );
 
 self.addEventListener('message', (event) => {
